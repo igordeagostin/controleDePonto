@@ -13,30 +13,29 @@ namespace Ponto.Controllers
         FuncaoDao funcaoDAO;
         public FuncaoController()
         {
-            
+            funcaoDAO = new FuncaoDao();
         }
         public void SaveOrUpdate(Funcao funcao)
-        {            
+        {
+            funcaoDAO.Salvar(funcao);
         }
         public void Remove(Funcao funcao)
         {
-           
+            funcaoDAO.Remove(funcao);
         }
 
         public Funcao BuscaPorId(int id)
         {
-            return null;
+            return funcaoDAO.BuscaPorId(id);
         }
 
         public IList<Funcao> Lista()
         {
-            return null;
+            return funcaoDAO.Lista();
         }
-
         public IList<Funcao> funcaoPorDepartamento(string nome)
         {
-            return null;
+            return funcaoDAO.funcaoPorDepartamento(nome);
         }
-
     }
 }

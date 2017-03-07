@@ -44,7 +44,8 @@ namespace Ponto.Telas
 
             funcao.Id = id;
             funcao.Nome = textBoxNome.Text;
-            funcao.Departamento = (Departamento) comboBoxDepartamentos.SelectedItem;
+            var departamento = (Departamento) comboBoxDepartamentos.SelectedItem;
+            funcao.DepartamentoId = departamento.Id;
             funcaoController.SaveOrUpdate(funcao);
             Close();
         }

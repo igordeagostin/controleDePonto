@@ -15,24 +15,25 @@ namespace Ponto.Controllers
 
         public FuncionariosController()
         {
+            funcionarioDAO = new FuncionarioDao();
         }
         public void addFuncionario(Funcionario funcionario)
-        {            
-
+        {
+            funcionarioDAO.Salvar(funcionario);
         }
         public void delFuncionario(Funcionario funcionario)
         {
-            
+            funcionarioDAO.Remove(funcionario);
         }
 
         public Funcionario BuscaPorId(int id)
         {
-            return null;
+            return funcionarioDAO.BuscaPorId(id);
         }
 
         public IList<Funcionario> Lista()
         {
-            return null;
+            return funcionarioDAO.Lista();
         }
 
     }

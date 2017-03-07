@@ -13,24 +13,25 @@ namespace Ponto.Controllers
         DepartamentoDao departamentoDAO;
         public DepartamentoController()
         {
+            departamentoDAO = new DepartamentoDao();
         }
         public void SaveOrUpdate(Departamento departamento)
-        {            
-           
+        {
+            departamentoDAO.Salvar(departamento);
         }
         public void Remove(Departamento departamento)
         {
-           
+            departamentoDAO.Remove(departamento);
         }
 
         public Departamento BuscaPorId(int id)
         {
-            return null;
+            return departamentoDAO.BuscaPorId(id);
         }
 
         public IList<Departamento> Lista()
         {
-            return null;
+            return departamentoDAO.Lista();
         }
 
     }

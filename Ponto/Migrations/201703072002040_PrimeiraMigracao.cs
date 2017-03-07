@@ -17,6 +17,18 @@ namespace Ponto.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Funcaos",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nome = c.String(unicode: false),
+                        DepartamentoId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Departamentoes", t => t.DepartamentoId, cascadeDelete: true)
+                .Index(t => t.DepartamentoId);
+            
+            CreateTable(
                 "dbo.Funcionarios",
                 c => new
                     {
@@ -30,26 +42,14 @@ namespace Ponto.Migrations
                         Admissao = c.DateTime(nullable: false, precision: 0),
                         Demissao = c.DateTime(nullable: false, precision: 0),
                         Situacao = c.String(unicode: false),
-                        Departamento_Id = c.Int(),
-                        Funcao_Id = c.Int(),
+                        FuncaoId = c.Int(nullable: false),
+                        DepartamentoId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Departamentoes", t => t.Departamento_Id)
-                .ForeignKey("dbo.Funcaos", t => t.Funcao_Id)
-                .Index(t => t.Departamento_Id)
-                .Index(t => t.Funcao_Id);
-            
-            CreateTable(
-                "dbo.Funcaos",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Nome = c.String(unicode: false),
-                        Departamento_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Departamentoes", t => t.Departamento_Id)
-                .Index(t => t.Departamento_Id);
+                .ForeignKey("dbo.Departamentoes", t => t.DepartamentoId, cascadeDelete: true)
+                .ForeignKey("dbo.Funcaos", t => t.FuncaoId, cascadeDelete: true)
+                .Index(t => t.FuncaoId)
+                .Index(t => t.DepartamentoId);
             
             CreateTable(
                 "dbo.Historicoes",
@@ -109,19 +109,19 @@ namespace Ponto.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Historicoes", "Funcionario_Id", "dbo.Funcionarios");
-            DropForeignKey("dbo.Funcionarios", "Funcao_Id", "dbo.Funcaos");
-            DropForeignKey("dbo.Funcaos", "Departamento_Id", "dbo.Departamentoes");
-            DropForeignKey("dbo.Funcionarios", "Departamento_Id", "dbo.Departamentoes");
+            DropForeignKey("dbo.Funcionarios", "FuncaoId", "dbo.Funcaos");
+            DropForeignKey("dbo.Funcionarios", "DepartamentoId", "dbo.Departamentoes");
+            DropForeignKey("dbo.Funcaos", "DepartamentoId", "dbo.Departamentoes");
             DropIndex("dbo.Historicoes", new[] { "Funcionario_Id" });
-            DropIndex("dbo.Funcaos", new[] { "Departamento_Id" });
-            DropIndex("dbo.Funcionarios", new[] { "Funcao_Id" });
-            DropIndex("dbo.Funcionarios", new[] { "Departamento_Id" });
+            DropIndex("dbo.Funcionarios", new[] { "DepartamentoId" });
+            DropIndex("dbo.Funcionarios", new[] { "FuncaoId" });
+            DropIndex("dbo.Funcaos", new[] { "DepartamentoId" });
             DropTable("dbo.Usuarios");
             DropTable("dbo.Feriadoes");
             DropTable("dbo.Empresas");
             DropTable("dbo.Historicoes");
-            DropTable("dbo.Funcaos");
             DropTable("dbo.Funcionarios");
+            DropTable("dbo.Funcaos");
             DropTable("dbo.Departamentoes");
         }
     }

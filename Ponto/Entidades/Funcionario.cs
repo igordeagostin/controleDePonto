@@ -19,7 +19,9 @@ namespace Ponto.Entidades
         public virtual DateTime Demissao { get; set; }
         public virtual string Situacao { get; set; }
         public virtual Funcao Funcao { get; set; }
+        public int FuncaoId { get; set; }
         public virtual Departamento Departamento { get; set; }
-        public virtual ISet<Historico> Historicos { get; set; }
+        public int DepartamentoId { get; set; }
+        public virtual IList<Historico> Historicos { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Ponto.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703071814391_PrimeiraMigracao"; }
+            get { return "201703072002040_PrimeiraMigracao"; }
         }
         
         string IMigrationMetadata.Source
