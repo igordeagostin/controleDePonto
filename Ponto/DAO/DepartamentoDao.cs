@@ -18,8 +18,15 @@ namespace LojaWeb.DAO
         }
         public void Salvar(Departamento departamento)
         {
-            contexto.Departamento.Add(departamento);
-            contexto.SaveChanges();
+            if (departamento.Id == 0)
+            {
+                contexto.Departamento.Add(departamento);
+                contexto.SaveChanges();
+            }
+            else if (departamento.Id > 0)
+            {
+                contexto.SaveChanges();
+            }
         }
 
         public Departamento BuscaPorId(int id)

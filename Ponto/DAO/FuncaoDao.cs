@@ -18,8 +18,15 @@ namespace LojaWeb.DAO
         }
         public void Salvar(Funcao funcao)
         {
-            contexto.Funcao.Add(funcao);
-            contexto.SaveChanges();
+            if(funcao.Id == 0)
+            {
+                contexto.Funcao.Add(funcao);
+                contexto.SaveChanges();
+            }
+            else if(funcao.Id > 0)
+            {
+                contexto.SaveChanges();
+            }            
         }
 
         public Funcao BuscaPorId(int id)

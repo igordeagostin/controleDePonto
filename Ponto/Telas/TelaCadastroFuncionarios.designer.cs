@@ -54,6 +54,9 @@
             this.comboBoxSituacao = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxDemissao = new System.Windows.Forms.TextBox();
+            this.buttonSelecionaImagem = new System.Windows.Forms.Button();
+            this.pictureBoxImagem = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -276,11 +279,31 @@
             this.textBoxDemissao.Size = new System.Drawing.Size(80, 20);
             this.textBoxDemissao.TabIndex = 25;
             // 
+            // buttonSelecionaImagem
+            // 
+            this.buttonSelecionaImagem.Location = new System.Drawing.Point(73, 288);
+            this.buttonSelecionaImagem.Name = "buttonSelecionaImagem";
+            this.buttonSelecionaImagem.Size = new System.Drawing.Size(116, 23);
+            this.buttonSelecionaImagem.TabIndex = 26;
+            this.buttonSelecionaImagem.Text = "Selecionar Imagem";
+            this.buttonSelecionaImagem.UseVisualStyleBackColor = true;
+            this.buttonSelecionaImagem.Click += new System.EventHandler(this.buttonSelecionaImagem_Click);
+            // 
+            // pictureBoxImagem
+            // 
+            this.pictureBoxImagem.Location = new System.Drawing.Point(73, 176);
+            this.pictureBoxImagem.Name = "pictureBoxImagem";
+            this.pictureBoxImagem.Size = new System.Drawing.Size(116, 106);
+            this.pictureBoxImagem.TabIndex = 27;
+            this.pictureBoxImagem.TabStop = false;
+            // 
             // TelaCadastroFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 321);
+            this.Controls.Add(this.pictureBoxImagem);
+            this.Controls.Add(this.buttonSelecionaImagem);
             this.Controls.Add(this.textBoxDemissao);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboBoxSituacao);
@@ -311,6 +334,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TelaCadastroFuncionarios";
             this.Activated += new System.EventHandler(this.TelaCadastroFuncionarios_Activated);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,5 +367,7 @@
         private System.Windows.Forms.ComboBox comboBoxSituacao;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxDemissao;
+        private System.Windows.Forms.Button buttonSelecionaImagem;
+        private System.Windows.Forms.PictureBox pictureBoxImagem;
     }
 }

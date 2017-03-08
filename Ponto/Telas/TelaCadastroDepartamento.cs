@@ -29,9 +29,17 @@ namespace Ponto.Telas
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             DepartamentoController departamentoController = new DepartamentoController();
-            Departamento departamento = new Departamento();
+            Departamento departamento;
 
-            departamento.Id = id;
+            if (departamentoController.BuscaPorId(id) != null)
+            {
+                departamento = departamentoController.BuscaPorId(id);
+            }
+            else
+            {
+                departamento = new Departamento();
+            }
+
             departamento.Nome = textBoxNome.Text;
             departamentoController.SaveOrUpdate(departamento);
             Close();

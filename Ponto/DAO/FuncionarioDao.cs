@@ -18,8 +18,15 @@ namespace LojaWeb.DAO
         }
         public void Salvar(Funcionario funcionario)
         {
-            contexto.Funcionario.Add(funcionario);
-            contexto.SaveChanges();
+            if (funcionario.Id == 0)
+            {
+                contexto.Funcionario.Add(funcionario);
+                contexto.SaveChanges();
+            }
+            else if (funcionario.Id > 0)
+            {
+                contexto.SaveChanges();
+            }
         }
 
         public Funcionario BuscaPorId(int id)
@@ -32,11 +39,7 @@ namespace LojaWeb.DAO
             contexto.Funcionario.Remove(funcionario);
             contexto.SaveChanges();
         }
-
-        public void SaveChanges()
-        {
-            contexto.SaveChanges();
-        }
+     
         public IList<Funcionario> Lista()
         {
             var busca = from d in contexto.Funcionario

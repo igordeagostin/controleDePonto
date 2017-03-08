@@ -40,9 +40,17 @@ namespace Ponto.Telas
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             FuncaoController funcaoController = new FuncaoController();
-            Funcao funcao = new Funcao();
+            Funcao funcao;
 
-            funcao.Id = id;
+            if(funcaoController.BuscaPorId(id) != null)
+            {
+                funcao = funcaoController.BuscaPorId(id);
+            }
+            else
+            {
+                funcao = new Funcao();
+            }
+            
             funcao.Nome = textBoxNome.Text;
             var departamento = (Departamento) comboBoxDepartamentos.SelectedItem;
             funcao.DepartamentoId = departamento.Id;
