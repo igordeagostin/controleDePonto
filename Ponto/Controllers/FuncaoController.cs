@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ponto.Entidades;
 using LojaWeb.DAO;
+using System.Windows.Forms;
 
 namespace Ponto.Controllers
 {
@@ -21,7 +22,16 @@ namespace Ponto.Controllers
         }
         public void Remove(Funcao funcao)
         {
-            funcaoDAO.Remove(funcao);
+            FuncionarioDao funcionarioDao = new FuncionarioDao();
+
+            if (funcionarioDao.QtdUtilizada(funcao.Id) > 0)
+            {
+                MessageBox.Show("Falha ao excluir Função! Motivo:\nA função '" + funcao.Nome + "' está sendo usada.");
+            }
+            else
+            {
+                funcaoDAO.Remove(funcao);
+            }
         }
 
         public Funcao BuscaPorId(int id)

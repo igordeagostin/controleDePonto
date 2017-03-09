@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ponto.Entidades;
 using LojaWeb.DAO;
+using System.Windows.Forms;
 
 namespace Ponto.Controllers
 {
@@ -21,7 +22,17 @@ namespace Ponto.Controllers
         }
         public void Remove(Departamento departamento)
         {
-            departamentoDAO.Remove(departamento);
+            FuncionarioDao funcionarioDao = new FuncionarioDao();
+            FuncaoDao funcaoDao = new FuncaoDao();
+
+            if ((funcionarioDao.QtdUtilizada(departamento.Id) > 0) || (funcaoDao.QtdUtilizada(departamento.Id) > 0))
+            {
+                MessageBox.Show("Falha ao excluir Função! Motivo:\nO departamento '" + departamento.Nome + "' está sendo usado.");
+            }
+            else
+            {
+                departamentoDAO.Remove(departamento);
+            }   
         }
 
         public Departamento BuscaPorId(int id)

@@ -39,7 +39,6 @@
             this.labelAdmissao = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.textBoxCPF = new System.Windows.Forms.TextBox();
             this.textBoxCHDiaria = new System.Windows.Forms.TextBox();
             this.textBoxSenha = new System.Windows.Forms.TextBox();
             this.textBoxAdmissao = new System.Windows.Forms.TextBox();
@@ -56,6 +55,7 @@
             this.textBoxDemissao = new System.Windows.Forms.TextBox();
             this.buttonSelecionaImagem = new System.Windows.Forms.Button();
             this.pictureBoxImagem = new System.Windows.Forms.PictureBox();
+            this.maskedTextBoxCPF = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,13 +148,6 @@
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(209, 20);
             this.textBoxNome.TabIndex = 9;
-            // 
-            // textBoxCPF
-            // 
-            this.textBoxCPF.Location = new System.Drawing.Point(73, 103);
-            this.textBoxCPF.Name = "textBoxCPF";
-            this.textBoxCPF.Size = new System.Drawing.Size(209, 20);
-            this.textBoxCPF.TabIndex = 10;
             // 
             // textBoxCHDiaria
             // 
@@ -291,17 +284,27 @@
             // 
             // pictureBoxImagem
             // 
+            this.pictureBoxImagem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImagem.Location = new System.Drawing.Point(73, 176);
             this.pictureBoxImagem.Name = "pictureBoxImagem";
             this.pictureBoxImagem.Size = new System.Drawing.Size(116, 106);
             this.pictureBoxImagem.TabIndex = 27;
             this.pictureBoxImagem.TabStop = false;
             // 
+            // maskedTextBoxCPF
+            // 
+            this.maskedTextBoxCPF.Location = new System.Drawing.Point(73, 106);
+            this.maskedTextBoxCPF.Mask = "000.000.000-00";
+            this.maskedTextBoxCPF.Name = "maskedTextBoxCPF";
+            this.maskedTextBoxCPF.Size = new System.Drawing.Size(209, 20);
+            this.maskedTextBoxCPF.TabIndex = 28;
+            // 
             // TelaCadastroFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 321);
+            this.Controls.Add(this.maskedTextBoxCPF);
             this.Controls.Add(this.pictureBoxImagem);
             this.Controls.Add(this.buttonSelecionaImagem);
             this.Controls.Add(this.textBoxDemissao);
@@ -318,7 +321,6 @@
             this.Controls.Add(this.textBoxSemanal);
             this.Controls.Add(this.textBoxCHDiaria);
             this.Controls.Add(this.textBoxSenha);
-            this.Controls.Add(this.textBoxCPF);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.labelAdmissao);
@@ -352,7 +354,6 @@
         private System.Windows.Forms.Label labelAdmissao;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxNome;
-        private System.Windows.Forms.TextBox textBoxCPF;
         private System.Windows.Forms.TextBox textBoxCHDiaria;
         private System.Windows.Forms.TextBox textBoxSenha;
         private System.Windows.Forms.TextBox textBoxAdmissao;
@@ -369,5 +370,6 @@
         private System.Windows.Forms.TextBox textBoxDemissao;
         private System.Windows.Forms.Button buttonSelecionaImagem;
         private System.Windows.Forms.PictureBox pictureBoxImagem;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxCPF;
     }
 }

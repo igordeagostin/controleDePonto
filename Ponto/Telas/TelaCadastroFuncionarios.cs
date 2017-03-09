@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace Ponto.Telas
     public partial class TelaCadastroFuncionarios : Form
     {
         int id;
+        byte[] imagemDePerfil = null;
         public TelaCadastroFuncionarios()
         {
             InitializeComponent();
@@ -25,19 +28,24 @@ namespace Ponto.Telas
 
             textBoxAdmissao.Enabled = false;
             textBoxDemissao.Enabled = false;
+            textBoxSenha.PasswordChar = '*';
+            pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         public TelaCadastroFuncionarios(Funcionario funcionario)
         {
             InitializeComponent();
 
+            textBoxSenha.PasswordChar = '*';
             id = funcionario.Id;
             textBoxNome.Text = funcionario.Nome;
             textBoxCHDiaria.Text = funcionario.CargaHorariaDiaria.ToString();
-            textBoxCPF.Text = funcionario.Cpf;
+            maskedTextBoxCPF.Text = funcionario.Cpf;
             textBoxSemanal.Text = funcionario.CargaHorariaSemanal.ToString();
             textBoxSenha.Text = funcionario.Senha;
-
+            pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxImagem.Image = byteArrayToImage(funcionario.Foto);
+            imagemDePerfil = funcionario.Foto;
             if(funcionario.Admissao == DateTime.MinValue)
             {
                 textBoxDemissao.Text = funcionario.Demissao.ToString("dd/MM/yyyy");
@@ -82,9 +90,10 @@ namespace Ponto.Telas
 
             funcionario.Nome = textBoxNome.Text;
             funcionario.Senha = textBoxSenha.Text;
-            funcionario.Cpf = textBoxCPF.Text;
+            funcionario.Cpf = maskedTextBoxCPF.Text;
             funcionario.CargaHorariaDiaria = float.Parse(textBoxCHDiaria.Text);
             funcionario.CargaHorariaSemanal = float.Parse(textBoxSemanal.Text);
+            funcionario.Foto = imagemDePerfil;
 
             //Verificando as datas de Admissão e Demissão
             if(textBoxAdmissao.Text == null || textBoxAdmissao.Text == "")
@@ -158,7 +167,57 @@ namespace Ponto.Telas
             openFile.CheckPathExists = true;
             openFile.CheckFileExists = true;
             openFile.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*";
-            openFile.ShowDialog();
+
+            DialogResult dr = openFile.ShowDialog();
+
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                // Le os arquivos selecionados 
+                foreach (String arquivo in openFile.FileNames)
+                {
+                    try
+                    {
+                        Image Imagem = Image.FromFile(arquivo);    
+                        imagemDePerfil = imageToByteArray(Imagem);
+                        pictureBoxImagem.Image = Imagem;
+                    }
+                    catch (SecurityException ex)
+                    {
+                        // O usuário  não possui permissão para ler arquivos
+                        MessageBox.Show("Erro de segurança Contate o administrador de segurança da rede.\n\n" +
+                                                    "Mensagem : " + ex.Message + "\n\n" +
+                                                    "Detalhes (enviar ao suporte):\n\n" + ex.StackTrace);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Não pode carregar a imagem (problemas de permissão)
+                        MessageBox.Show("Não é possível exibir a imagem : "
+                                                   + ". Você pode não ter permissão para ler o arquivo , ou " +
+                                                   " ele pode estar corrompido.\n\nErro reportado : " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        //Coverte Image em byte[]
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            return ms.ToArray();
+        }
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            if(byteArrayIn != null)
+            {
+                MemoryStream ms = new MemoryStream(byteArrayIn);
+                Image returnImage = Image.FromStream(ms);
+                return returnImage;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

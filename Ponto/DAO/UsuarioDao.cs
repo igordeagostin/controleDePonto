@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Windows.Forms;
 
 namespace LojaWeb.DAO
 {
@@ -17,8 +18,16 @@ namespace LojaWeb.DAO
         }
         public void Salvar(Usuario usuario)
         {
-            contexto.Usuario.Add(usuario);
-            contexto.SaveChanges();
+            if (usuario.Id == 0)
+            {
+                contexto.Usuario.Add(usuario);
+                contexto.SaveChanges();
+            }
+            else if (usuario.Id > 0)
+            {
+                contexto.SaveChanges();
+            }
+            
         }
 
         public Usuario BuscaPorId(int id)
@@ -32,10 +41,26 @@ namespace LojaWeb.DAO
             contexto.SaveChanges();
         }
 
-        public void SaveChanges()
+        public IList<Usuario> Lista()
         {
-            contexto.SaveChanges();
+            var busca = from d in contexto.Usuario
+                        select d;
+
+            return busca.ToList();
         }
+        public bool Login(string login, string senha)
+        {
+            if(contexto.Usuario.Count(u => u.Login == login && u.Senha == senha) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("O Login ou Senha estão incorretos.");
+                return false;
+            }
+        }
+
 
     }
 }

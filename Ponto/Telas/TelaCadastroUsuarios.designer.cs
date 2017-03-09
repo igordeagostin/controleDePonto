@@ -1,6 +1,6 @@
 ﻿namespace Ponto.Telas
 {
-    partial class TelaCadastroDepartamento
+    partial class TelaCadastroUsuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,10 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonSalvar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.textBoxSenha = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label2
@@ -52,7 +56,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(197, 89);
+            this.buttonCancelar.Location = new System.Drawing.Point(197, 138);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 3;
@@ -62,7 +66,7 @@
             // 
             // buttonSalvar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(116, 89);
+            this.buttonSalvar.Location = new System.Drawing.Point(116, 138);
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(75, 23);
             this.buttonSalvar.TabIndex = 4;
@@ -70,18 +74,54 @@
             this.buttonSalvar.UseVisualStyleBackColor = true;
             this.buttonSalvar.Click += new System.EventHandler(this.buttonSalvar_Click);
             // 
-            // TelaCadastroDepartamento
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Login:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 81);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Senha:";
+            // 
+            // textBoxLogin
+            // 
+            this.textBoxLogin.Location = new System.Drawing.Point(56, 52);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(216, 20);
+            this.textBoxLogin.TabIndex = 7;
+            // 
+            // textBoxSenha
+            // 
+            this.textBoxSenha.Location = new System.Drawing.Point(56, 81);
+            this.textBoxSenha.Name = "textBoxSenha";
+            this.textBoxSenha.Size = new System.Drawing.Size(216, 20);
+            this.textBoxSenha.TabIndex = 8;
+            // 
+            // TelaCadastroUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 123);
+            this.ClientSize = new System.Drawing.Size(284, 173);
+            this.Controls.Add(this.textBoxSenha);
+            this.Controls.Add(this.textBoxLogin);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSalvar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.label2);
-            this.Name = "TelaCadastroDepartamento";
+            this.Name = "TelaCadastroUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroDepartamento";
+            this.Text = "TelaCadastroUsuarios";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +133,9 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonSalvar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxLogin;
+        private System.Windows.Forms.TextBox textBoxSenha;
     }
 }

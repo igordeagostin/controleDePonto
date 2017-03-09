@@ -1,4 +1,5 @@
-﻿using Ponto.Telas;
+﻿using Ponto.Entidades;
+using Ponto.Telas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,17 @@ namespace Ponto
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new TelaPrincipal());
+            Usuario usuario = new Usuario();
+
+            Login login = new Login(usuario);
+
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new TelaPrincipal(usuario));
+            };
         }
     }
 }

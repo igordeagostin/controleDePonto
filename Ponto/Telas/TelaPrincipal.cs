@@ -34,5 +34,11 @@ namespace Ponto.Telas
             TelaFuncoes telaFuncoes = new TelaFuncoes();
             telaFuncoes.ShowDialog();
         }
+
+        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaUsuarios telaUsuarios = new TelaUsuarios();
+            telaUsuarios.ShowDialog();
+        }
     }
 }

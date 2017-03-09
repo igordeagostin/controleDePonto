@@ -47,5 +47,10 @@ namespace LojaWeb.DAO
 
             return busca.ToList();
         }
+
+        public int QtdUtilizada(int id)
+        {
+            return contexto.Funcionario.Count(u => u.FuncaoId == id);
+        }
     }
 }

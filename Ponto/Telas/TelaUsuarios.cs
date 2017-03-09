@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Ponto.Telas
 {
-    public partial class TelaFuncoes : Form
+    public partial class TelaUsuarios : Form
     {
         int id;
-        public TelaFuncoes()
+        public TelaUsuarios()
         {
             InitializeComponent();
             configuraDataGridView();
@@ -23,31 +23,32 @@ namespace Ponto.Telas
 
         public void configuraDataGridView()
         {
-            FuncaoController funcaoController = new FuncaoController();
+            UsuarioController usuarioController = new UsuarioController();
 
-            var lista = funcaoController.Lista().Select(funcao => new
+            var lista = usuarioController.Lista().Select(usuario => new
             {
-                Id = funcao.Id,
-                Nome = funcao.Nome,
-                Departamento = funcao.Departamento.Nome
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Login = usuario.Login,
+                Senha = usuario.Senha
             }).ToList();
-            dataGridViewFuncoes.DataSource = lista;
+            dataGridViewUsuarios.DataSource = lista;
 
             // Renomeia as colunas do DataGridView
 
-            dataGridViewFuncoes.Columns[0].HeaderText = "ID";
-            dataGridViewFuncoes.Columns[0].Name = "ID";
-            dataGridViewFuncoes.Columns[1].HeaderText = "NOME";
-            dataGridViewFuncoes.Columns[2].HeaderText = "DEPARTAMENTO";
-            dataGridViewFuncoes.Columns[3].HeaderText = "FUNCIONÁRIOS";
+            dataGridViewUsuarios.Columns[0].HeaderText = "ID";
+            dataGridViewUsuarios.Columns[0].Name = "ID";
+            dataGridViewUsuarios.Columns[1].HeaderText = "NOME";
+            dataGridViewUsuarios.Columns[2].HeaderText = "LOGIN";
+            dataGridViewUsuarios.Columns[3].HeaderText = "SENHA";
 
             
-            dataGridViewFuncoes.Columns[3].Visible = false;
+            dataGridViewUsuarios.Columns[3].Visible = false;
         }
 
         private void buttonIncluir_Click(object sender, EventArgs e)
         {
-            TelaCadastroFuncoes form = new TelaCadastroFuncoes();
+            TelaCadastroUsuarios form = new TelaCadastroUsuarios();
             form.ShowDialog();
             configuraDataGridView();
         }
@@ -68,9 +69,9 @@ namespace Ponto.Telas
         {
             if (verificaId())
             {
-                FuncaoController funcaoController = new FuncaoController();
-                Funcao funcao = funcaoController.BuscaPorId(id);
-                var form = new TelaCadastroFuncoes(funcao);
+                UsuarioController usuarioController = new UsuarioController();
+                Usuario usuario = usuarioController.BuscaPorId(id);
+                var form = new TelaCadastroUsuarios(usuario);
                 form.ShowDialog();
                 configuraDataGridView();
             }
@@ -80,13 +81,13 @@ namespace Ponto.Telas
         {
             if (verificaId())
             {
-                FuncaoController funcaoController = new FuncaoController();
-                Funcao funcao = funcaoController.BuscaPorId(id);
+                UsuarioController usuarioController = new UsuarioController();
+                Usuario usuario = usuarioController.BuscaPorId(id);
                 if (MessageBox.Show("Tem certeza que deseja excluir?", "Ponto",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                  == DialogResult.Yes)
                 {
-                    funcaoController.Remove(funcao);
+                    usuarioController.Remove(usuario);
                 }
 
                 configuraDataGridView();
@@ -95,15 +96,15 @@ namespace Ponto.Telas
 
         private void dataGridViewFuncoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            id = Convert.ToInt32(dataGridViewFuncoes["ID", e.RowIndex].Value);
+            id = Convert.ToInt32(dataGridViewUsuarios["ID", e.RowIndex].Value);
         }
 
         private void dataGridViewFuncoes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-                id = Convert.ToInt32(dataGridViewFuncoes["ID", e.RowIndex].Value);
-                FuncaoController funcaoController = new FuncaoController();
-                Funcao funcao = funcaoController.BuscaPorId(id);
-                var form = new TelaCadastroFuncoes(funcao);
+                id = Convert.ToInt32(dataGridViewUsuarios["ID", e.RowIndex].Value);
+                UsuarioController usuarioController = new UsuarioController();
+                Usuario usuario = usuarioController.BuscaPorId(id);
+                var form = new TelaCadastroUsuarios(usuario);
                 form.ShowDialog();
                 configuraDataGridView();
         }

@@ -44,5 +44,10 @@ namespace Ponto.Telas
             departamentoController.SaveOrUpdate(departamento);
             Close();
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
