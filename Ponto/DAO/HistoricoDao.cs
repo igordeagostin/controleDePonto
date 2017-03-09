@@ -25,16 +25,17 @@ namespace LojaWeb.DAO
         {
             return contexto.Historico.FirstOrDefault(u => u.Id == id);
         }
-
         public void Remove(Historico historico)
         {
             contexto.Historico.Remove(historico);
             contexto.SaveChanges();
         }
-
-        public void SaveChanges()
+        public IList<Historico> Lista()
         {
-            contexto.SaveChanges();
+            var busca = from d in contexto.Historico
+                        select d;
+
+            return busca.ToList();
         }
     }
 }

@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Contexto.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\HistoricoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\FuncaoController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
@@ -156,6 +157,12 @@
     <Compile Include="Telas\TelaFuncionarios.designer.cs">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\TelaHistoricos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\TelaHistoricos.designer.cs">
+      <DependentUpon>TelaHistoricos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\TelaUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +215,9 @@
     <EmbeddedResource Include="Telas\TelaFuncionarios.resx">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Telas\TelaHistoricos.resx">
+      <DependentUpon>TelaHistoricos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Telas\TelaUsuarios.resx">
       <DependentUpon>TelaUsuarios.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +228,7 @@
       <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Ponto.Entidades.Historico.datasource" />
     <None Include="Properties\DataSources\Ponto.Entidades.Usuario.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
