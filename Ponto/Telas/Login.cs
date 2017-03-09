@@ -14,7 +14,7 @@ namespace Ponto.Telas
 {
     public partial class Login : Form
     {
-        public Login(Usuario usuario)
+        public Login()
         {
             InitializeComponent();
             textBoxSenha.PasswordChar = '*';
@@ -25,9 +25,9 @@ namespace Ponto.Telas
         {
             UsuarioController usuarioController = new UsuarioController();
 
-            if(usuarioController.Login(textBoxLogin.Text, textBoxSenha.Text)){
-                TelaPrincipal formPrincipal = new TelaPrincipal();
-                formPrincipal.Show();
+            if (usuarioController.Login(textBoxLogin.Text, textBoxSenha.Text))
+            {
+                DialogResult = DialogResult.OK;
             }
         }
 

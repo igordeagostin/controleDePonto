@@ -19,14 +19,12 @@ namespace Ponto
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Usuario usuario = new Usuario();
-
-            Login login = new Login(usuario);
+            Login login = new Login();
 
             if (login.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new TelaPrincipal(usuario));
-            };
+                Application.Run(new TelaPrincipal());
+            }
         }
     }
 }
